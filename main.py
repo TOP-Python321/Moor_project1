@@ -24,3 +24,19 @@ def winning_combinations(dim: int) -> Tuple[Set[Any], ...]:
     combinations.append(combination)
 
     return tuple(combinations)
+
+
+def game_field(dim: int) -> str:
+    """
+    Function generates the playing field
+    :param dim: Int. Size of game field.
+    :return: Str. return to stdout the playing field in string representation.
+    """
+    separator = '-' * (dim ** 2 + 5)
+    cell = ' {} |' * dim
+    field = ''
+
+    for i in range(dim):
+        field += f"{cell.rstrip('|')}\n{separator}\n"
+
+    return field[:-len(separator)-1]
