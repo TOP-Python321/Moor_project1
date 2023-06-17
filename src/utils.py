@@ -1,3 +1,4 @@
+import shutil
 from typing import Tuple, Set, Any
 
 
@@ -45,3 +46,34 @@ def game_field(dim: int) -> str:
 # Также, не учтена ширина разделяющей полосы и выравнивание в ячейках.
 # При размере игрового поля 3х3 все нормально, но, если сделать его 4х4, то нужно учитывать количество пробелов в
 # ячейках от 0 до 9.
+
+
+def game_title(text: str) -> str:
+    """
+    Function generates a string in which the passed text will be framed by the characters '=' and '#'
+    :param text: String. Title message.
+    :return: String.
+    """
+    terminal_size = shutil.get_terminal_size().columns
+    terminal_width = terminal_size - 3
+    text_width = terminal_width - 4
+    text_rows = []
+    row = ''
+    lines = '#' + '=' * terminal_width + '#'
+    empty_line = f"#{' ' * terminal_width}#"
+    words = text.split()
+
+    for word in words:
+        if len(row) + len(word) > text_width:
+            text_rows.append(f'#{row.center(117)}#\n')
+            row = ''
+        row += word + ' '
+    text_rows.append(f'#{row.center(117)}#\n')
+    rows = ''.join(text_rows)
+
+    header = f"\n\n{lines}\n{empty_line}\n"
+    for row in text_rows:
+        header += row
+    header += f"{empty_line}\n{lines}\n\n"
+
+    return header
