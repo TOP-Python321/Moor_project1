@@ -8,3 +8,4 @@ COMMANDS = {
     'выйти': ('quit', 'q', 'выход', 'в'),
 }
 PREFIX = r'[A-Za-zА-ЯЁа-яё][A-Za-zА-ЯЁа-яё\d_]+'
+STATISTIC = {}
