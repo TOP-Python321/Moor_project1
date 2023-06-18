@@ -13,9 +13,7 @@ def winning_combinations(dim: int) -> Tuple[Set[Any], ...]:
     for row in range(dim):
         combination = set(range(row * dim, (row + 1) * dim))
         combinations.append(combination)
-
-    for col in range(dim):
-        combination = set(range(col, dim * dim, dim))
+        combination = set(range(row, dim * dim, dim))
         combinations.append(combination)
 
     combination = set(range(0, dim * dim, dim + 1))
@@ -25,6 +23,9 @@ def winning_combinations(dim: int) -> Tuple[Set[Any], ...]:
     combinations.append(combination)
 
     return tuple(combinations)
+
+
+print(winning_combinations(4))
 
 
 def game_field(dim: int) -> str:
