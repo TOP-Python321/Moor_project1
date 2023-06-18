@@ -28,20 +28,21 @@ def winning_combinations(dim: int) -> Tuple[Set[Any], ...]:
     return tuple(combinations)
 
 
-def game_field(dim: int) -> str:
+def field_template(dim: int) -> str:
     """
     Function generates the playing field
     :param dim: Int. Size of game field.
     :return: Str. return to stdout the playing field in string representation.
     """
-    separator = '-' * (dim ** 2 + 5)
-    cell = ' {} |' * dim
-    field = ''
+    width = dim*4+1
+    separator = '-'
+    cell_separator = '|'
+    line = f'\n{separator*width}\n'
+    return line.join(
+        cell_separator.join(' {} ' for _ in range(dim))
+        for _ in range(dim)
+    )
 
-    for i in range(dim):
-        field += f"{cell.rstrip('|')}\n{separator}\n"
-
-    return field[:-len(separator)-1]
 
 # Пока не придумал, как не выводить последнюю подстроку с ----
 # Также, не учтена ширина разделяющей полосы и выравнивание в ячейках.
