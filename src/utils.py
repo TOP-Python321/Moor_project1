@@ -10,6 +10,7 @@ def winning_combinations(dim: int) -> Tuple[Set[Any], ...]:
     """
     combinations = []
 
+    # ПЕРЕИМЕНОВАТЬ: а вот здесь как раз индексы...))
     for row in range(dim):
         combination = set(range(row * dim, (row + 1) * dim))
         combinations.append(combination)
@@ -21,10 +22,12 @@ def winning_combinations(dim: int) -> Tuple[Set[Any], ...]:
     combination = set(range(0, dim * dim, dim + 1))
     combinations.append(combination)
 
-    combination = set(range(dim - 1, dim * dim - dim + 1, dim - 1))
+    combination = set(range(dim - 1, dim**2 - dim + 1, dim - 1))
     combinations.append(combination)
 
     return tuple(combinations)
+
+# КОММЕНТАРИЙ: очень хорошо!
 
 
 def game_field(dim: int) -> str:
