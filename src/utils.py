@@ -1,5 +1,5 @@
 import re
-import shutil
+from shutil import get_terminal_size
 from typing import Tuple, Set, Any
 
 from data import *
@@ -55,7 +55,7 @@ def game_title(text: str) -> str:
     :param text: String. Title message.
     :return: String.
     """
-    terminal_size = shutil.get_terminal_size().columns
+    terminal_size = get_terminal_size().columns
     terminal_width = terminal_size - 3
     text_width = terminal_width - 4
     text_rows = []
@@ -66,11 +66,11 @@ def game_title(text: str) -> str:
 
     for word in words:
         if len(row) + len(word) > text_width:
-            text_rows.append(f'#{row.center(117)}#\n')
+            text_rows.append(f'#{row.center(77)}#\n')
             row = ''
         row += word + ' '
-    text_rows.append(f'#{row.center(117)}#\n')
-    rows = ''.join(text_rows)
+    text_rows.append(f'#{row.center(77)}#\n')
+    row = ''.join(text_rows)
 
     header = f"\n\n{lines}\n{empty_line}\n"
     for row in text_rows:
