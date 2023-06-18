@@ -1,3 +1,8 @@
+from pathlib import Path
+
+PLAYERS_PATH = Path(r'..\data\players.ini')
+SAVES_PATH = Path(r'..\data\saves.txt')
+
 COMMANDS = {
     'начать новую партию': ('new', 'n', 'начать', 'н'),
     'загрузить существующую партию': ('load', 'l', 'загрузка', 'з'),
