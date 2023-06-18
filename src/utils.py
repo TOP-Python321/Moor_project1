@@ -1,5 +1,4 @@
 from configparser import ConfigParser
-from re import compile
 from shutil import get_terminal_size
 from typing import Tuple, Set, Any
 
@@ -97,7 +96,11 @@ def read_players() -> bool:
     return bool(config)
 
 
-def name_input():
+def write_player():
+    pass
+
+
+def name_input() -> str:
     while True:
         name = input(f'{data.MESSAGES["ввод имени"]} > ')
         if data.PATTERN.fullmatch(name):
@@ -105,11 +108,9 @@ def name_input():
         print(f'{data.MESSAGES["некорректное имя"]}')
 
 
-def get_player_name():
-    player_name = input("Укажите свой никнейм: ")
-    if bool(PATTERN.match(player_name)):
-        STATISTIC[player_name] = {'Побед': 0, 'Поражаний': 0, 'Ничьи': 0}
-        print('Игрок создан')
-        print(STATISTIC)
-    else:
-        print('Ошибка')
+def get_player_name() -> None:
+    name = name_input()
+    if name not in data.player_db:
+        data.player_db[name] = {'побед': 0, 'поражений': 0, 'ничьих': 0}
+        write_player()
+    data.players += [name]
