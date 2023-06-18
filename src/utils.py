@@ -1,8 +1,5 @@
-import re
 import shutil
 from typing import Tuple, Set, Any
-
-from data import *
 
 
 def winning_combinations(dim: int) -> Tuple[Set[Any], ...]:
@@ -16,7 +13,9 @@ def winning_combinations(dim: int) -> Tuple[Set[Any], ...]:
     for row in range(dim):
         combination = set(range(row * dim, (row + 1) * dim))
         combinations.append(combination)
-        combination = set(range(row, dim * dim, dim))
+
+    for col in range(dim):
+        combination = set(range(col, dim * dim, dim))
         combinations.append(combination)
 
     combination = set(range(0, dim * dim, dim + 1))
@@ -78,15 +77,3 @@ def game_title(text: str) -> str:
     header += f"{empty_line}\n{lines}\n\n"
 
     return header
-
-
-def get_player_name():
-    player_name = input("Укажите свой никнейм: ")
-    pattern = re.compile(PREFIX)
-    if bool(pattern.match(player_name)):
-        STATISTIC[player_name] = {'Побед': 0, 'Поражаний': 0, 'Ничьи': 0}
-        print('Игрок создан')
-        print(STATISTIC)
-    else:
-        print('Ошибка')
-
