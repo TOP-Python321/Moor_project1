@@ -12,5 +12,10 @@ COMMANDS = {
     'изменить размер поля': ('dim', 'd', 'размер', 'р'),
     'выйти': ('quit', 'q', 'выход', 'в'),
 }
+player_db = {}
+
+TOKENS = ('X', 'O')
+players: list[str] = []
+
 PREFIX = r'[A-Za-zА-ЯЁа-яё][A-Za-zА-ЯЁа-яё\d_]+'
 STATISTIC = {}
