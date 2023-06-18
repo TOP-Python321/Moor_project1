@@ -1,4 +1,4 @@
-import shutil
+from shutil import get_terminal_size
 from typing import Tuple, Set, Any
 
 
@@ -66,7 +66,7 @@ def game_title(text: str) -> str:
     :param text: String. Title message.
     :return: String.
     """
-    terminal_size = shutil.get_terminal_size().columns
+    terminal_size = get_terminal_size().columns
     terminal_width = terminal_size - 3
     text_width = terminal_width - 4
     text_rows = []
@@ -89,3 +89,8 @@ def game_title(text: str) -> str:
     header += f"{empty_line}\n{lines}\n\n"
 
     return header
+
+# >>> game_title('КРЕСТИКИ-НОЛИКИ')
+# КОММЕНТАРИЙ: что-то пошло не так..)
+# '\n\n#=============================================================================#\n#
+
