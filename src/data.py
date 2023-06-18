@@ -1,4 +1,5 @@
 from pathlib import Path
+from re import compile
 
 PLAYERS_PATH = Path(r'..\data\players.ini')
 SAVES_PATH = Path(r'..\data\saves.txt')
@@ -22,5 +23,5 @@ player_db = {}
 TOKENS = ('X', 'O')
 players: list[str] = []
 
-PREFIX = r'[A-Za-zА-ЯЁа-яё][A-Za-zА-ЯЁа-яё\d_]+'
+PATTERN = compile(r'[A-Za-zА-ЯЁа-яё][A-Za-zА-ЯЁа-яё\d_]+')
 STATISTIC = {}
