@@ -1,7 +1,9 @@
+from configparser import ConfigParser
 import re
 from shutil import get_terminal_size
 from typing import Tuple, Set, Any
 
+import data
 from data import *
 
 
@@ -79,6 +81,20 @@ def game_title(text: str) -> str:
     header += f"{empty_line}\n{lines}\n\n"
 
     return header
+
+
+def read_players() -> bool:
+    config = ConfigParser()
+    config.read(data.PLAYERS_PATH)
+    config = {
+        player_name: {
+            key: int(value)
+            for key, value in config[player_name].items()
+        }
+        for player_name in config.sections()
+    }
+    data.player_db = config
+    return bool(config)
 
 
 def get_player_name():
