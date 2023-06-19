@@ -50,7 +50,7 @@ def field_template(dim: int) -> str:
 # ячейках от 0 до 9.
 
 
-def game_title(text: str) -> str:
+def show_title(text: str) -> str:
     """
     Function generates a string in which the passed text will be framed by the characters '=' and '#'
     :param text: String. Title message.
