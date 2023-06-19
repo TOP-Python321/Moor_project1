@@ -97,3 +97,14 @@ def read_players() -> bool:
 
 def write_player():
     pass
+
+
+# Не закончена
+def get_commands() -> str:
+    """
+    Prints commands.
+    """
+    commands = ''
+    for desc, title in data.COMMANDS.items():
+        commands += f'{title} - {desc}\n'
+    return commands
