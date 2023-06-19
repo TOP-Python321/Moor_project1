@@ -12,8 +12,8 @@ def name_input() -> str:
 
 def get_player_name() -> None:
     name = name_input()
-    if name not in data.player_db:
-        data.player_db[name] = {'побед': 0, 'поражений': 0, 'ничьих': 0}
+    if name not in data.players_db:
+        data.players_db[name] = {'побед': 0, 'поражений': 0, 'ничьих': 0}
         utils.write_player()
     data.players += [name]
 
