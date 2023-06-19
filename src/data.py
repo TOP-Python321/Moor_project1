@@ -27,5 +27,7 @@ dim: int = 3
 dim_range = range(dim)
 all_cells: int = dim**2
 
+turns: dict[int, str] = {}
+
 PATTERN = compile(r'[A-Za-zА-ЯЁа-яё][A-Za-zА-ЯЁа-яё\d_]+')
 STATISTIC = {}
