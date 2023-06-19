@@ -15,6 +15,7 @@ player.get_player_name()
 # Суперцикл
 while True:
     # Ожидание ввода команды
+    utils.get_commands()
     command = input('Введите команду: ')
 
     if command in data.COMMANDS['начать новую партию']:
