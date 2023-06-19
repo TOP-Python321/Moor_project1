@@ -1,8 +1,10 @@
 import data
 import player
+import utils
 """
 Точка входа
 """
+utils.show_title("КРЕСТИКИ-НОЛИКИ")
 # Чтение файлов
 
 # Если первый запуск:
