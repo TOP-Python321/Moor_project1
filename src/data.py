@@ -22,7 +22,7 @@ COMMANDS = {
     'изменить размер поля': ('dim', 'd', 'размер', 'р'),
     'выйти': ('quit', 'q', 'выход', 'в'),
 }
-player_db = {}
+players_db = {}
 
 TOKENS = ('X', 'O')
 players: list[str] = []
