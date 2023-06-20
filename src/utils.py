@@ -95,8 +95,14 @@ def read_players() -> bool:
     return bool(config)
 
 
-def write_player():
-    pass
+def write_player() -> None:
+    """
+    Writes information from the corresponding global data structure to the player data file.
+    """
+    config = ConfigParser()
+    config.read_dict(data.players_db)
+    with open(data.PLAYERS_PATH, 'a', encoding='utf-8') as file:
+        config.write(file)
 
 
 # Не закончена
