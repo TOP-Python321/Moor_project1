@@ -11,6 +11,9 @@ def name_input() -> str:
 
 
 def get_player_name() -> None:
+    """
+    Performs authorization or registration of a player.
+    """
     name = name_input()
     if name not in data.players_db:
         data.players_db[name] = {'побед': 0, 'поражений': 0, 'ничьих': 0}
