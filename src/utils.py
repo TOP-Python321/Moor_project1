@@ -82,6 +82,9 @@ def show_title(text: str) -> str:
 
 
 def read_players() -> bool:
+    """
+    Reads a player data file, saves the information to the appropriate global data structure. Returns True if there is at least one entry in the player data file, False otherwise.
+    """
     config = ConfigParser()
     config.read(data.PLAYERS_PATH)
     config = {
