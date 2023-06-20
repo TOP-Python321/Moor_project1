@@ -25,6 +25,7 @@ COMMANDS = {
     'выйти': ('quit', 'q', 'выход', 'в'),
 }
 players_db = {}
+saves_db: dict[tuple[str, str], dict] = {}
 
 TOKENS = ('X', 'O')
 players: list[str] = []
