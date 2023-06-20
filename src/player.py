@@ -3,6 +3,9 @@ import utils
 
 
 def name_input() -> str:
+    """
+    Requests the player's name
+    """
     while True:
         name = input(f'{data.MESSAGES["ввод имени"]} > ')
         if data.PATTERN.fullmatch(name):
