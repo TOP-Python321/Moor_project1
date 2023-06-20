@@ -24,7 +24,7 @@ COMMANDS = {
     'изменить размер поля': ('dim', 'd', 'размер', 'р'),
     'выйти': ('quit', 'q', 'выход', 'в'),
 }
-players_db = {}
+players_db: dict[str, dict[str, int]] = {}
 saves_db: dict[tuple[str, str], dict] = {}
 
 TOKENS = ('X', 'O')
