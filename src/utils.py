@@ -71,7 +71,6 @@ def show_title(text: str) -> str:
             row = ''
         row += word + ' '
     text_rows.append(f'#{row.center(77)}#\n')
-    row = ''.join(text_rows)
 
     header = f"\n\n{lines}\n{empty_line}\n"
     for row in text_rows:
