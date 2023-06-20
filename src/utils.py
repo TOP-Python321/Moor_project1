@@ -56,26 +56,20 @@ def show_title(text: str) -> str:
     :param text: String. Title message.
     :return: String.
     """
-    terminal_size = get_terminal_size().columns
-    terminal_width = terminal_size - 3
-    text_width = terminal_width - 4
+    terminal_size = get_terminal_size().columns - 3
     text_rows = []
     row = ''
-    lines = '#' + '=' * terminal_width + '#'
-    empty_line = f"#{' ' * terminal_width}#"
-    words = text.split()
+    lines = '#' + '=' * terminal_size + '#\n'
+    empty_line = f"#{' ' * terminal_size}#\n"
 
-    for word in words:
-        if len(row) + len(word) > text_width:
-            text_rows.append(f'#{row.center(77)}#\n')
+    for word in text.split():
+        if len(row + word) > terminal_size - 4:
+            text_rows += f'#{row.center(terminal_size)}#\n'
             row = ''
-        row += word + ' '
-    text_rows.append(f'#{row.center(77)}#\n')
+        row += f'{word} '
+    text_rows += f'#{row.center(terminal_size)}#\n'
 
-    header = f"\n\n{lines}\n{empty_line}\n"
-    for row in text_rows:
-        header += row
-    header += f"{empty_line}\n{lines}\n\n"
+    header = lines + empty_line + ''.join(text_rows) + empty_line + lines
 
     return header
 
