@@ -1,4 +1,5 @@
 import data
+import game
 import player
 import utils
 """
@@ -19,7 +20,7 @@ while True:
     command = input('Введите команду: ')
 
     if command in data.COMMANDS['начать новую партию']:
-        pass
+        game.game()
     elif command in data.COMMANDS['загрузить существующую партию']:
         pass
     elif command in data.COMMANDS['отобразить раздел помощи']:
