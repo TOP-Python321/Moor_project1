@@ -18,6 +18,7 @@ while True:
     # Ожидание ввода команды
     utils.get_commands()
     command = input('Введите команду: ')
+    player.get_player_name()
 
     if command in data.COMMANDS['начать новую партию']:
         game.game()

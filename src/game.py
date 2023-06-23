@@ -1,3 +1,4 @@
+from configparser import ConfigParser
 import data
 import utils
 
@@ -31,13 +32,19 @@ def game():
         # 10. Запрос хода игрока
         print(f'Ход игрока {data.players[o]} ')
         turn = get_human_turn()
-        data.turns[turn] = data.TOKENS[o]
+        if isinstance(turn, int):
+            data.turns[turn] = data.TOKENS[o]
+
         # а) ЕСЛИ ввод пустой:
         if turn is None:
             # сохранение незавершённой партии
+            # не доделано
             data.saves_db[data.players] = data.turns
+            config = ConfigParser()
+            for elem in data.saves_db:
+                config[','.join(elem)] = {data.players.join([str(i) for i in data.saves_db[elem]])}
             with open(data.SAVES_PATH, 'a', encoding='utf-8') as file:
-                file.write(data.saves_db)
+                config.write(file)
             # переход к этапу 4
             return None
 
