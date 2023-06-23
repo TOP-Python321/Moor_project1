@@ -39,12 +39,11 @@ def game():
         if turn is None:
             # сохранение незавершённой партии
             # не доделано
-            data.saves_db[data.players] = data.turns
-            config = ConfigParser()
-            for elem in data.saves_db:
-                config[','.join(elem)] = {data.players.join([str(i) for i in data.saves_db[elem]])}
+            players = ''.join(player for player in data.players)
+            turns = tuple(turn[0] for turn in data.turns.items())
+            save = f'\n{players}!{turns}!{data.dim}'
             with open(data.SAVES_PATH, 'a', encoding='utf-8') as file:
-                config.write(file)
+                file.write(save)
             # переход к этапу 4
             return None
 
