@@ -39,7 +39,7 @@ def game():
         if turn is None:
             # сохранение незавершённой партии
             # не доделано
-            players = ''.join(player for player in data.players)
+            players = ','.join(player for player in data.players)
             turns = tuple(turn[0] for turn in data.turns.items())
             save = f'\n{players}!{turns}!{data.dim}'
             with open(data.SAVES_PATH, 'a', encoding='utf-8') as file:
