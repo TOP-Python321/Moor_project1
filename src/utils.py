@@ -34,11 +34,13 @@ def field_template(dim: int) -> str:
     :param dim: Int. Size of game field.
     :return: Str. return to stdout the playing field in string representation.
     """
+    # ИСПРАВИТЬ: dim*3 + (dim-1) => dim*4 - 1
     width = dim*4+1
     separator = '-'
     cell_separator = '|'
     line = f'\n{separator*width}\n'
     return line.join(
+        # ИСПРАВИТЬ: эту строку тоже можно сгенерировать один раз заранее
         cell_separator.join(' {} ' for _ in range(dim))
         for _ in range(dim)
     )
@@ -97,6 +99,7 @@ def write_player() -> None:
     """
     config = ConfigParser()
     config.read_dict(data.players_db)
+    # ИСПРАВИТЬ: функция read_players() читает в словарь data.players_db всё содержимое файла, затем здесь вы читаете в конфиг-объект весь словарь data.players_db — следовательно вам надо файл перезаписывать, а не дозаписывать
     with open(data.PLAYERS_PATH, 'a', encoding='utf-8') as file:
         config.write(file)
 
