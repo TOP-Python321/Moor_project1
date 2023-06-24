@@ -1,4 +1,3 @@
-from configparser import ConfigParser
 import data
 import player
 import utils
@@ -37,6 +36,7 @@ def game():
         # а) ЕСЛИ ввод пустой:
         if turn is None:
             # сохранение незавершённой партии
+            # СДЕЛАТЬ: сохранение игры — это сфера ответственности другой функции — вынесите этот код в отдельную функцию
             # не доделано
             players = ','.join(person for person in data.players)
             turns = tuple(turn[0] for turn in data.turns.items())
@@ -45,10 +45,12 @@ def game():
                 file.write(save)
             # переход к этапу 4
             return None
+        # ИСПРАВИТЬ: разве функция get_human_turn() может вернуть ещё что-то кроме int и None?
         elif isinstance(turn, int):
             data.turns[turn] = data.TOKENS[o]
             if set(data.turns) in utils.winning_combinations(data.dim):
                 player.update_stats(data.players)
+                # СДЕЛАТЬ: аналогично: работа с файлами данных вне сферы ответственности функции game()
                 with open(data.PLAYERS_PATH, 'w', encoding='utf-8') as file:
                     file.write(data.players_db)
 
