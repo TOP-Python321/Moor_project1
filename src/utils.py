@@ -131,6 +131,22 @@ def change_dim(new_dim: int) -> None:
     data.board = dict.fromkeys(range(1, data.all_cells+1), ' ')
 
 
+def concatenate_rows(
+        matrix1: str,
+        matrix2: str,
+        *matrices: str,
+        padding: int = 8
+) -> str:
+    """"""
+    matrices = matrix1, matrix2, *matrices
+    matrices = [m.split('\n') for m in matrices]
+    padding = ' '*padding
+    return '\n'.join(
+        padding.join(row)
+        for row in zip(*matrices)
+    )
+
+
 # Не закончена
 def get_commands() -> str:
     """
