@@ -74,3 +74,21 @@ def save() -> None:
             'turns': data.turns
         }
     }
+
+
+def print_board(right: bool = False) -> None:
+    """"""
+    board = data.field.format(*(data.board | data.turns).values())
+    if data.DEBUG:
+        matr = bot.vectorization(data.debug_data.get('result'))
+        cw = max(len(str(n)) for n in matr)
+        matr = utils.field_template(cw).format(*matr)
+        board = utils.concatenate_rows(board, matr)
+
+    if right:
+        terminal_width = get_terminal_size()[0] - 1
+        margin = terminal_width - max(len(line) for line in board.split())
+        margin = '\n'.join(' '*margin for _ in board.split())
+        board = utils.concatenate_rows(margin, board)
+
+    print(board)
