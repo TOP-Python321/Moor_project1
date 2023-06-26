@@ -46,12 +46,6 @@ def field_template(dim: int) -> str:
     )
 
 
-# Пока не придумал, как не выводить последнюю подстроку с ----
-# Также, не учтена ширина разделяющей полосы и выравнивание в ячейках.
-# При размере игрового поля 3х3 все нормально, но, если сделать его 4х4, то нужно учитывать количество пробелов в
-# ячейках от 0 до 9.
-
-
 def show_title(text: str) -> str:
     """
     Function generates a string in which the passed text will be framed by the characters '=' and '#'
@@ -100,7 +94,7 @@ def write_player() -> None:
     config = ConfigParser()
     config.read_dict(data.players_db)
     # ИСПРАВИТЬ: функция read_players() читает в словарь data.players_db всё содержимое файла, затем здесь вы читаете в конфиг-объект весь словарь data.players_db — следовательно вам надо файл перезаписывать, а не дозаписывать
-    with open(data.PLAYERS_PATH, 'a', encoding='utf-8') as file:
+    with open(data.PLAYERS_PATH, 'w', encoding='utf-8') as file:
         config.write(file)
 
 
