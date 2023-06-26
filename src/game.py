@@ -73,11 +73,6 @@ def save() -> None:
             'turns': data.turns
         }
     }
-    players = ','.join(person for person in data.players)
-    turns = tuple(turn[0] for turn in data.turns.items())
-    save_game = f'\n{players}!{turns}!{data.dim}'
-    with open(data.SAVES_PATH, 'a', encoding='utf-8') as file:
-        file.write(save_game)
 
 
 def print_board(right: bool = False) -> None:

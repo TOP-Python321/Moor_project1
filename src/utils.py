@@ -123,6 +123,15 @@ def write_player() -> None:
         config.write(file)
 
 
+def write_saves() -> None:
+    """"""
+    players = ','.join(person for person in data.players)
+    turns = tuple(turn[0] for turn in data.turns.items())
+    save_game = f'\n{players}!{turns}!{data.dim}'
+    with open(data.SAVES_PATH, 'a', encoding='utf-8') as file:
+        file.write(save_game)
+
+
 def change_dim(new_dim: int) -> None:
     """"""
     data.dim = new_dim
