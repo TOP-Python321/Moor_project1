@@ -41,17 +41,17 @@ def game():
             # сохранение незавершённой партии
             # СДЕЛАТЬ: сохранение игры — это сфера ответственности другой функции — вынесите этот код в отдельную функцию
             # не доделано
-
+            utils.write_saves()
             # переход к этапу 4
             return None
         # ИСПРАВИТЬ: разве функция get_human_turn() может вернуть ещё что-то кроме int и None?
-        elif isinstance(turn, int):
-            data.turns[turn] = data.TOKENS[o]
-            if set(data.turns) in utils.winning_combinations(data.dim):
-                player.update_stats(data.players)
-                # СДЕЛАТЬ: аналогично: работа с файлами данных вне сферы ответственности функции game()
-                with open(data.PLAYERS_PATH, 'w', encoding='utf-8') as file:
-                    file.write(data.players_db)
+        data.turns[turn] = data.TOKENS[o]
+        if set(data.turns) in utils.winning_combinations(data.dim):
+            player.update_stats(data.players)
+            # СДЕЛАТЬ: аналогично: работа с файлами данных вне сферы ответственности функции game()
+            # with open(data.PLAYERS_PATH, 'w', encoding='utf-8') as file:
+            #     file.write(data.players_db)
+            utils.write_player()
 
     else:
         # ничья
