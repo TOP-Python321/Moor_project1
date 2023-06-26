@@ -66,3 +66,11 @@ def load(players: tuple[str, str], save: dict) -> None:
     utils.change_dim(save['dim'])
 
 
+def save() -> None:
+    """"""
+    data.saves_db |= {
+        tuple(data.players): {
+            'dim': data.dim,
+            'turns': data.turns
+        }
+    }
