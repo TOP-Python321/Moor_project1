@@ -92,3 +92,11 @@ def print_board(right: bool = False) -> None:
         board = utils.concatenate_rows(margin, board)
 
     print(board)
+
+
+def clear() -> None:
+    """"""
+    # noinspection PyTypeChecker
+    data.saves_db.pop(tuple(data.players), None)
+    data.players = [data.authorized]
+    data.turns = {}
