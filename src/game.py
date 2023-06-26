@@ -41,11 +41,7 @@ def game():
             # сохранение незавершённой партии
             # СДЕЛАТЬ: сохранение игры — это сфера ответственности другой функции — вынесите этот код в отдельную функцию
             # не доделано
-            players = ','.join(person for person in data.players)
-            turns = tuple(turn[0] for turn in data.turns.items())
-            save = f'\n{players}!{turns}!{data.dim}'
-            with open(data.SAVES_PATH, 'a', encoding='utf-8') as file:
-                file.write(save)
+
             # переход к этапу 4
             return None
         # ИСПРАВИТЬ: разве функция get_human_turn() может вернуть ещё что-то кроме int и None?
@@ -77,6 +73,11 @@ def save() -> None:
             'turns': data.turns
         }
     }
+    players = ','.join(person for person in data.players)
+    turns = tuple(turn[0] for turn in data.turns.items())
+    save_game = f'\n{players}!{turns}!{data.dim}'
+    with open(data.SAVES_PATH, 'a', encoding='utf-8') as file:
+        file.write(save_game)
 
 
 def print_board(right: bool = False) -> None:
