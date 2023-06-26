@@ -57,3 +57,12 @@ def game():
     else:
         # ничья
         return []
+
+
+def load(players: tuple[str, str], save: dict) -> None:
+    """"""
+    data.players = list(players)
+    data.turns = save['turns']
+    utils.change_dim(save['dim'])
+
+
