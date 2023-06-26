@@ -8,6 +8,9 @@ HELP_PATH = Path(r'..\data\help.txt')
 TITLE = 'КРЕСТИКИ-НОЛИКИ'
 HELP_TITLE = 'ПОМОЩЬ'
 
+DEBUG = True
+debug_data = {}
+
 PROMPT = ' > '
 
 MESSAGES = {
@@ -28,13 +31,23 @@ players_db: dict[str, dict[str, int]] = {}
 saves_db: dict[tuple[str, str], dict] = {}
 
 TOKENS = ('X', 'O')
+WEIGHT_OWN = 1.5
+WEIGHT_FOE = 1.0
+START_MATRICES = ()
+
 players: list[str] = []
+
+authorized: str
 
 dim: int = 3
 dim_range = range(dim)
 all_cells: int = dim**2
 
+board: dict[int, str] = dict.fromkeys(range(1, all_cells+1), ' ')
 turns: dict[int, str] = {}
 
+field: str = ''
+
 PATTERN = compile(r'[A-Za-zА-ЯЁа-яё][A-Za-zА-ЯЁа-яё\d_]+')
+DIM_PATTERN = compile(r'[3-9]|1[0-9]|20')
 STATISTIC = {}
