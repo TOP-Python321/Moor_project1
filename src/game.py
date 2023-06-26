@@ -1,3 +1,6 @@
+from shutil import get_terminal_size
+
+import bot
 import data
 import player
 import utils
