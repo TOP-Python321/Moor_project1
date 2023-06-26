@@ -103,6 +103,14 @@ def read_saves() -> None:
         }
 
 
+def dim_input() -> int:
+    while True:
+        dim = input(f' {data.MESSAGES["ввод размерности"]}{data.PROMPT}')
+        if data.DIM_PATTERN.fullmatch(dim):
+            return int(dim)
+        print(f' {data.MESSAGES["некорректная размерность"]} ')
+
+
 
 def write_player() -> None:
     """
