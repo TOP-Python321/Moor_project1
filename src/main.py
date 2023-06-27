@@ -9,7 +9,7 @@ import player
 import utils
 
 
-utils.show_title("КРЕСТИКИ-НОЛИКИ")
+print(utils.show_title("КРЕСТИКИ-НОЛИКИ"))
 # Чтение файлов
 
 # Если первый запуск:
