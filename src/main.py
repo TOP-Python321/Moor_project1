@@ -5,6 +5,7 @@
 # ИСПОЛЬЗОВАТЬ: документация модуля, как и документация функции, размещается в самом начале тела — потом уже импорты
 import data
 import game
+import help
 import player
 import utils
 
@@ -14,6 +15,9 @@ print(utils.show_title("КРЕСТИКИ-НОЛИКИ"))
 
 # Если первый запуск:
     # Вывод раздела помощи
+if not utils.read_players():
+    utils.read_saves()
+    help.get_help()
 
 player.get_player_name()
 
