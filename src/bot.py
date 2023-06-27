@@ -18,6 +18,10 @@ Matrix = Sequence[Series]
 
 def easy_mode() -> int:
     """Возвращает номер случайной свободной клетки игрового поля."""
+    turns = set(turn for turn in data.turns.items())
+    all_turns = set(range(data.all_cells+1))
+    diff = all_turns.difference(turns)
+    return choice(list(diff))
 
 
 def hard_mode() -> int:
