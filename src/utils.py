@@ -126,7 +126,7 @@ def write_player() -> None:
 def write_saves() -> None:
     """"""
     players = ','.join(person for person in data.players)
-    turns = tuple(turn[0] for turn in data.turns.items())
+    turns = ','.join(str(turn[0]) for turn in data.turns.items())
     save_game = f'\n{players}!{turns}!{data.dim}'
     with open(data.SAVES_PATH, 'a', encoding='utf-8') as file:
         file.write(save_game)
@@ -157,11 +157,11 @@ def concatenate_rows(
 
 
 # Не закончена
-def get_commands() -> str:
+def get_commands() -> None:
     """
     Prints commands.
     """
     commands = ''
     for desc, title in data.COMMANDS.items():
         commands += f'{title} - {desc}\n'
-    return commands
+    print('\n\nДоступные команды:\n',commands)
