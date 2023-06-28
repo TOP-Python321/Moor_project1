@@ -103,6 +103,18 @@ def read_saves() -> None:
         }
 
 
+def load_saves() -> dict:
+    """Returns a dictionary with saves for the current player"""
+    slots = {}
+    index = 1
+    if data.saves_db:
+        for players, turns in data.saves_db.items():
+            if data.players[0] in players:
+                slots[index] = players, turns['turns']
+                index += 1
+        return slots
+
+
 def dim_input() -> int:
     while True:
         dim = input(f' {data.MESSAGES["ввод размерности"]}{data.PROMPT}')
