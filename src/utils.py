@@ -115,6 +115,20 @@ def load_saves() -> dict:
         return slots
 
 
+def get_saves() -> int:
+    """Requests and returns the saved game number"""
+    if load_saves():
+        print("\nДля вас доступны следующие сохранения:\n")
+        for players, turns in load_saves().items():
+            print(players, turns)
+    else:
+        print("Сохранения не найдены")
+    while True:
+        slot = input(f"Выберите сохраненную игру: ")
+        if slot in load_saves():
+            return int(slot)
+
+
 def dim_input() -> int:
     while True:
         dim = input(f' {data.MESSAGES["ввод размерности"]}{data.PROMPT}')
