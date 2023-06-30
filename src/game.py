@@ -22,11 +22,22 @@ def get_human_turn() -> int | None:
                     return turn
 
 
+def get_bot_turn():
+    pass
+
+
 def game():
     """
     Game process controller
     """
+    data.field = utils.field_template()
+    data.START_MATRICES = (
+        bot.calc_sm_cross(),
+        bot.calc_sm_zero()
+    )
     # 9. Цикл до максимального количества ходов
+    player1_turns = set()
+    player2_turns = set()
     for t in range(len(data.turns), data.all_cells):
         o = t % 2
 
@@ -40,18 +51,25 @@ def game():
         if turn is None:
             # сохранение незавершённой партии
             # СДЕЛАТЬ: сохранение игры — это сфера ответственности другой функции — вынесите этот код в отдельную функцию
-            # не доделано
+            save()
             utils.write_saves()
             # переход к этапу 4
             return None
         # ИСПРАВИТЬ: разве функция get_human_turn() может вернуть ещё что-то кроме int и None?
         data.turns[turn] = data.TOKENS[o]
-        if set(data.turns) in utils.winning_combinations(data.dim):
-            player.update_stats(data.players)
+        # for turn, token in data.turns.items():
+        #     if turn % 2:
+        #         player2_turns |= set(token)
+        #     else:
+        #         player1_turns |= set(token)
+        # if player1_turns in utils.winning_combinations(data.dim):
+        #     player.update_stats(data.players)
             # СДЕЛАТЬ: аналогично: работа с файлами данных вне сферы ответственности функции game()
             # with open(data.PLAYERS_PATH, 'w', encoding='utf-8') as file:
             #     file.write(data.players_db)
             utils.write_player()
+            return f'Победил игрок {data.players[o]}'
+
 
     else:
         # ничья
@@ -91,6 +109,20 @@ def print_board(right: bool = False) -> None:
         board = utils.concatenate_rows(margin, board)
 
     print(board)
+
+
+def get_mode() -> None:
+    print(f'{data.MESSAGES["режим игры"]}')
+    mode = input(f'{data.PROMPT}')
+    if mode == '1':
+        pass
+    elif mode == '2':
+        player.get_player_name()
+    else:
+        print('Повторите попытку')
+
+
+
 
 
 def clear() -> None:
