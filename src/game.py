@@ -57,13 +57,13 @@ def game():
             return None
         # ИСПРАВИТЬ: разве функция get_human_turn() может вернуть ещё что-то кроме int и None?
         data.turns[turn] = data.TOKENS[o]
-        # for turn, token in data.turns.items():
-        #     if turn % 2:
-        #         player2_turns |= set(token)
-        #     else:
-        #         player1_turns |= set(token)
-        # if player1_turns in utils.winning_combinations(data.dim):
-        #     player.update_stats(data.players)
+        for turn, token in data.turns.items():
+            if turn % 2:
+                player2_turns |= set(token)
+            else:
+                player1_turns |= set(token)
+        if player1_turns in utils.winning_combinations(data.dim):
+            player.update_stats(data.players)
             # СДЕЛАТЬ: аналогично: работа с файлами данных вне сферы ответственности функции game()
             # with open(data.PLAYERS_PATH, 'w', encoding='utf-8') as file:
             #     file.write(data.players_db)
@@ -112,6 +112,7 @@ def print_board(right: bool = False) -> None:
 
 
 def get_mode() -> None:
+    """Requests the game mode"""
     print(f'{data.MESSAGES["режим игры"]}')
     mode = input(f'{data.PROMPT}')
     if mode == '1':
@@ -122,6 +123,21 @@ def get_mode() -> None:
         print('Повторите попытку')
 
 
+def bot_difficulty() -> None:
+    """Requests the difficulty level of the bot"""
+    while True:
+        print(f'{data.MESSAGES["уровень сложности"]}')
+        level = int(input(f'{data.PROMPT}'))
+        if level not in [1, 2]:
+            continue
+        else:
+            data.difficulty = level
+            name = '#' + str(level)
+            data.players += [name]
+            if name not in data.players_db:
+                data.players_db[name] = {'побед': 0, 'поражений': 0, 'ничьих': 0}
+                utils.write_player()
+                break
 
 
 
