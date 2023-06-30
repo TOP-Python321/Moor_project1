@@ -3,6 +3,7 @@ from shutil import get_terminal_size
 from typing import Tuple, Set, Any
 
 import data
+import game
 
 
 def winning_combinations(dim: int) -> Tuple[Set[Any], ...]:
@@ -28,22 +29,22 @@ def winning_combinations(dim: int) -> Tuple[Set[Any], ...]:
     return tuple(combinations)
 
 
-def field_template(dim: int) -> str:
+def field_template(data_width: int = None) -> str:
     """
     Function generates the playing field
     :param dim: Int. Size of game field.
     :return: Str. return to stdout the playing field in string representation.
     """
     # ИСПРАВИТЬ: dim*3 + (dim-1) => dim*4 - 1
-    width = dim*4+1
-    separator = '-'
-    cell_separator = '|'
-    line = f'\n{separator*width}\n'
-    return line.join(
+    if data_width is None:
+        field_width = data.dim * (3 + max(len(t) for t in data.TOKENS)) - 1
+    else:
+        field_width = data.dim * (3 + data_width) - 1
+    v_sep, h_sep = '|', '—'
+    v_sep = v_sep.join([' {} '] * data.dim)
+    h_sep = f'\n{h_sep * field_width}\n'
+    return h_sep.join([v_sep] * data.dim)
         # ИСПРАВИТЬ: эту строку тоже можно сгенерировать один раз заранее
-        cell_separator.join(' {} ' for _ in range(dim))
-        for _ in range(dim)
-    )
 
 
 def show_title(text: str) -> str:
@@ -115,18 +116,43 @@ def load_saves() -> dict:
         return slots
 
 
-def get_saves() -> int:
+def get_saves(saves) -> int:
     """Requests and returns the saved game number"""
-    if load_saves():
+    if saves:
         print("\nДля вас доступны следующие сохранения:\n")
         for players, turns in load_saves().items():
             print(players, turns)
     else:
-        print("Сохранения не найдены")
+        return "Сохранения не найдены"
     while True:
-        slot = input(f"Выберите сохраненную игру: ")
-        if slot in load_saves():
-            return int(slot)
+        slot = int(input(f"Выберите сохраненную игру: "))
+        if slot in saves:
+            data.players = [*saves[slot][0]]
+            data.turns = saves[slot][1]
+            return slot
+
+
+def load_game():
+
+    index = 0
+    last_turns = []
+    if len(data.turns) < 2:
+        print("В этой партии было сделано менее 2-х ходов")
+    else:
+        turns_list = list(data.turns.keys())
+        last_turns = turns_list[-2:]
+    for pos, token in data.turns.items():
+        if pos in data.board:
+            data.board[pos] = token
+        if pos in last_turns:
+            game.print_board()
+        index = abs(index - 1)
+
+
+def load():
+    saves = load_saves()
+    get_saves(saves)
+    load_game()
 
 
 def dim_input() -> int:
