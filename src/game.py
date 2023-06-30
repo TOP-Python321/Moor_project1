@@ -22,8 +22,12 @@ def get_human_turn() -> int | None:
                     return turn
 
 
-def get_bot_turn():
-    pass
+def get_bot_turn() -> int:
+    """Returns the cell coordinate of the current move for the bot"""
+    if data.difficulty == 1:
+        return bot.easy_mode()
+    else:
+        return bot.hard_mode()
 
 
 def game():
