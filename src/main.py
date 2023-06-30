@@ -33,7 +33,7 @@ while True:
     elif command in data.COMMANDS['загрузить существующую партию']:
         pass
     elif command in data.COMMANDS['отобразить раздел помощи']:
-        pass
+        help.get_help()
     elif command in data.COMMANDS['создать или переключиться на игрока']:
         pass
     elif command in data.COMMANDS['отобразить таблицу результатов']:
@@ -41,5 +41,5 @@ while True:
     elif command in data.COMMANDS['изменить размер поля']:
         pass
     elif command in data.COMMANDS['выйти']:
-        pass
+        break
 
